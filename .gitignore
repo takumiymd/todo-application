@@ -1,0 +1,9 @@
+# Compiled binaries
+todo
+todo.exe
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.DS_Store
