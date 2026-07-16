@@ -1,5 +1,10 @@
 package internal
 
+import (
+	"takumiymd/todo-application/takumifmt"
+	"takumiymd/todo-application/takumios"
+)
+
 // Todo represents a single task in our application
 type Todo struct {
 	ID        int
@@ -63,4 +68,59 @@ func (l *List) Delete(id int) error {
 		}
 	}
 	return NewTaskError("task not found")
+}
+
+// Save converts the list of todos to a CSV string and writes it to disk
+func (l *List) Save(filename string) error {
+	var lines []string
+
+	for _, todo := range *l {
+		line := takumifmt.BuildCSVLine(todo.ID, todo.Task, todo.Completed)
+		lines = append(lines, line)
+
+	}
+
+	data := takumifmt.Join(lines, "\n")
+
+	err := takumios.WriteFile(filename, data)
+	if err != nil {
+		return NewTaskError("failed to save files: " + err.Error())
+	}
+
+	return nil
+}
+
+// Load reads a CSV file and parse the text line by line and convert those strings back into Todo structs
+func (l *List) Load(filename string) error {
+	data, err := takumios.ReadFile(filename)
+	if err != nil {
+		return nil
+	}
+
+	*l = []Todo{}
+
+	lines := takumifmt.Split(data, '\n')
+
+	for _, line := range lines {
+		if line == "" {
+			continue
+		}
+		fields := takumifmt.Split(line, ',')
+
+		if len(fields) == 3 {
+			id := takumifmt.StringToInt(fields[0])
+			taskName := fields[1]
+			isCompleted := takumifmt.StringToBool(fields[2])
+
+			todo := Todo{
+				ID:        id,
+				Task:      taskName,
+				Completed: isCompleted,
+			}
+
+			*l = append(*l, todo)
+		}
+	}
+
+	return nil
 }
