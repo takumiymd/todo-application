@@ -1,6 +1,15 @@
 # Compiled binaries
-todo
+/todo
+cmd/todo/todo
+
+#just in case for Windows users 
 todo.exe
+cmd/todo/todo.exe
+
+# Database and state files
+*.db
+*.csv
+
 
 # Editor directories and files
 .vscode/
