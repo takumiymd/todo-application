@@ -9,6 +9,7 @@ The application is interacted with via the command line and supports the followi
 *   **`list`**: Displays all tasks, outputting the task ID, the task name, and its status as either "pending" or "done".
 *   **`complete`**: Requires a task ID as an argument. Marks the specified task as complete and saves the updated state.
 *   **`delete`**: Requires a task ID as an argument. Removes the specified task from the list and saves the updated state.
+*   **`search`**: Requires a keyword string as an argument. Displays all tasks that contain the specified keyword.
 
 ---
 
@@ -44,6 +45,7 @@ Handles custom string formatting, type conversion, and manipulation without rely
 *   **`BuildCSVLine(id int, task string, completed bool) string`**: Constructs a comma separated CSV line format.
 *   **`Join(elements []string, separator string) string`**: Concatenates a slice of strings with a specified separator.
 *   **`Split(s string, separator rune) []string`**: Slices a string into an array of strings divided by a separator rune.
+*   **`Contains(s string, substr string) bool`**: Checks if a substring exists within a given string, returning true if a match is found.
 
 ---
 

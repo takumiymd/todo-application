@@ -88,6 +88,32 @@ func main() {
 		myTodos.Save(dbFile)
 		takumios.Print("Task " + args[2] + " deleted")
 
+	case "search":
+		if len(args) < 3 {
+			takumios.Print("Error: Keyword to search is required")
+			return
+		}
+		keyword := args[2]
+		foundCount := 0
+
+		takumios.Print("Search result for '" + keyword + "':")
+
+		for _, task := range myTodos {
+			if takumifmt.Contains(task.Task, keyword) {
+				status := "pending"
+				if task.Completed {
+					status = "done"
+				}
+
+				output := takumifmt.IntToString(task.ID) + ":" + task.Task + " " + status
+				takumios.Print(output)
+				foundCount++
+			}
+		}
+		if foundCount == 0 {
+			takumios.Print("No tasks found containing such word.")
+		}
+
 	default:
 		takumios.Print("Invalid command: " + command)
 		takumios.Print("Available command following: [add|list|complete|delete]")

@@ -91,3 +91,32 @@ func Split(s string, separator rune) []string {
 
 	return result
 }
+
+// Contains checks if the substr exists inside the string s
+func Contains(s string, substr string) bool {
+	// base case
+	if len(substr) == 0 {
+		return true
+	}
+	if len(substr) > len(s) {
+		return false
+	}
+
+	// sliding window algorithm
+	for i := 0; i <= len(s)-len(substr); i++ {
+		match := true
+
+		for j := 0; j < len(substr); j++ {
+			if s[i+j] != substr[j] {
+				match = false
+				break
+			}
+		}
+
+		if match {
+			return true
+		}
+	}
+
+	return false
+}
