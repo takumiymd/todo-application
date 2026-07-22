@@ -38,24 +38,6 @@ func main() {
 
 		takumios.Print("Task added: " + task)
 
-	// case "list":
-	// 	if len(myTodos) == 0 {
-	// 		takumios.Print("No Task found:")
-	// 		return
-	// 	}
-	//
-	// 	takumios.Print("Todo lists:")
-	//
-	// 	for _, task := range myTodos {
-	// 		status := "pending"
-	// 		if task.Completed {
-	// 			status = "done"
-	// 		}
-	//
-	// 		output := takumifmt.IntToString(task.ID) + ":" + task.Task + " " + status
-	// 		takumios.Print(output)
-	// 	}
-
 	case "complete":
 		if len(args) < 3 {
 			takumios.Print("Error: Task ID required to complete")
@@ -116,7 +98,7 @@ func main() {
 
 	case "list":
 		if len(myTodos) == 0 {
-			takumios.Print("No  tasks found.")
+			takumios.Print("No tasks found.")
 			return
 		}
 
