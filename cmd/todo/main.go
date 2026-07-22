@@ -38,24 +38,6 @@ func main() {
 
 		takumios.Print("Task added: " + task)
 
-	case "list":
-		if len(myTodos) == 0 {
-			takumios.Print("No Task found:")
-			return
-		}
-
-		takumios.Print("Todo lists:")
-
-		for _, task := range myTodos {
-			status := "pending"
-			if task.Completed {
-				status = "done"
-			}
-
-			output := takumifmt.IntToString(task.ID) + ":" + task.Task + " " + status
-			takumios.Print(output)
-		}
-
 	case "complete":
 		if len(args) < 3 {
 			takumios.Print("Error: Task ID required to complete")
@@ -113,6 +95,56 @@ func main() {
 		if foundCount == 0 {
 			takumios.Print("No tasks found containing such word.")
 		}
+
+	case "list":
+		if len(myTodos) == 0 {
+			takumios.Print("No tasks found.")
+			return
+		}
+
+		// task 4 length
+		maxTaskLen := 4
+		for _, task := range myTodos {
+			runes := []rune(task.Task)
+			if len(runes) > maxTaskLen {
+				maxTaskLen = len(runes)
+			}
+		}
+
+		// for the cols
+		taskDashes := ""
+		for i := 0; i < maxTaskLen; i++ {
+			taskDashes += "-"
+		}
+
+		// corners and intersections of table
+		border := "+------+-" + taskDashes + "-+----------+"
+
+		// top border and header
+		takumios.Print(border)
+		header := "| ID   | " + takumifmt.PadRight("Task", maxTaskLen) + " | Status   |"
+		takumios.Print(header)
+		takumios.Print(border)
+
+		// print tasks with PadRight func
+		for _, task := range myTodos {
+			// 8 characters length so we dont have to call PadRight just for the status
+			status := "pending "
+			if task.Completed {
+				status = "done    "
+			}
+
+			idStr := takumifmt.IntToString(task.ID)
+
+			paddedID := takumifmt.PadRight(idStr, 4)
+			paddedTask := takumifmt.PadRight(task.Task, maxTaskLen)
+
+			row := "| " + paddedID + " | " + paddedTask + " | " + status + " |"
+			takumios.Print(row)
+
+		}
+
+		takumios.Print(border)
 
 	default:
 		takumios.Print("Invalid command: " + command)
