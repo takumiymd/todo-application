@@ -63,3 +63,11 @@ Provides custom wrappers for OS interactions, specifically file I/O and terminal
 *   **`ReadFile(filename string) (string, error)`**: Reads a file's contents from the disk and returns the data as a string.
 *   **`Print(s string)`**: Writes a string directly to the terminal via standard output.
 
+
+## Package `takumitest` (`takumitest/assert.go`)
+
+A zero dependency, custom testing harness built to verify application logic without relying on Go's standard `testing` package
+
+### Functions
+*   **`AssertString(testName string, expected string, actual string)`**: Compares two strings and outputs a formatted "[PASS]" or "[FAIL]" message to standard output using `takumios.Print`. On failure, it explicitly prints both the expected and actual values to assist with debugging.
+*   **`AssertInt(testName string, expected int, actual int)`**: Compares two integers and outputs a formatted "[PASS]" or "[FAIL]" message to standard output using `takumios.Print`. On failure, it converts the values to strings via `takumifmt.IntToString` before printing.
