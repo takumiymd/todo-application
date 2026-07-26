@@ -10,6 +10,10 @@ The application is interacted with via the command line and supports the followi
 *   **`complete`**: Requires a task ID as an argument. Marks the specified task as complete and saves the updated state.
 *   **`delete`**: Requires a task ID as an argument. Removes the specified task from the list and saves the updated state.
 *   **`search`**: Requires a keyword string as an argument. Displays all tasks that contain the specified keyword.
+*   **`help`**: Displays the application's command line usage guide and available commands.
+
+### Functions
+*   **`showHelp()`**: Prints the usage guide and command list using `takumios.Print` to maintain zero dependency formatting.
 
 ---
 
@@ -58,3 +62,4 @@ Provides custom wrappers for OS interactions, specifically file I/O and terminal
 *   **`WriteFile(filename string, data string) error`**: Writes a string of data directly to disk with `0644` /`+rw`permissions.
 *   **`ReadFile(filename string) (string, error)`**: Reads a file's contents from the disk and returns the data as a string.
 *   **`Print(s string)`**: Writes a string directly to the terminal via standard output.
+
