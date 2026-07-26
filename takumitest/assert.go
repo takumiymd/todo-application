@@ -19,7 +19,7 @@ func AssertString(testName string, expected string, current string) {
 }
 
 // AssertInt checks if two integers match
-func AssertInt(testName string, expected, int, current int) {
+func AssertInt(testName string, expected int, current int) {
 	if expected == current {
 		takumios.Print("[PASS] " + testName)
 		return
