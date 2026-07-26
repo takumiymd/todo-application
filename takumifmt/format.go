@@ -120,3 +120,22 @@ func Contains(s string, substr string) bool {
 
 	return false
 }
+
+// PadRight adds spaces to the right side of a string until it hits the target
+func PadRight(text string, targetLength int) string {
+	runes := []rune(text)
+	currentLength := len(runes)
+
+	spacesNeeded := targetLength - currentLength
+
+	if spacesNeeded <= 0 {
+		return text
+	}
+
+	result := text
+	for i := 0; i < spacesNeeded; i++ {
+		result += " "
+	}
+
+	return result
+}

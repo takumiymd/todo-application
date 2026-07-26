@@ -13,7 +13,7 @@ func main() {
 
 	// base case
 	if len(args) < 2 {
-		takumios.Print("Must follow: todo [add|list|complete|delete] [arguments]")
+		showHelp()
 		return
 	}
 
@@ -146,8 +146,26 @@ func main() {
 
 		takumios.Print(border)
 
+	case "help":
+		showHelp()
+
 	default:
 		takumios.Print("Invalid command: " + command)
-		takumios.Print("Available command following: [add|list|complete|delete]")
+		takumios.Print("")
+		showHelp()
 	}
+}
+
+// showHelp prints the app's command line usage guide and available commands
+func showHelp() {
+	takumios.Print("Usage: todo <command> [arguments]")
+	takumios.Print("")
+	takumios.Print("Commands:")
+
+	takumios.Print("  " + takumifmt.PadRight("add", 12) + "Add a new task")
+	takumios.Print("  " + takumifmt.PadRight("list", 12) + "List all tasks")
+	takumios.Print("  " + takumifmt.PadRight("complete", 12) + "Mark a task as completed")
+	takumios.Print("  " + takumifmt.PadRight("delete", 12) + "Delete a task by id")
+	takumios.Print("  " + takumifmt.PadRight("search", 12) + "Search for tasks by keyword")
+	takumios.Print("  " + takumifmt.PadRight("help", 12) + "Show this help menu")
 }

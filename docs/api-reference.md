@@ -6,7 +6,7 @@ This document provides a summary of the core packages, types, and functions used
 
 The application is interacted with via the command line and supports the following operations:
 *   **`add`**: Requires a task string as an argument. Adds the new task to the list and saves it to `todo.db`.
-*   **`list`**: Displays all tasks, outputting the task ID, the task name, and its status as either "pending" or "done".
+*   **`list`**: Displays all tasks, outputting the task ID, the task name, and its status as either "pending" or "done" in a aligned table. 
 *   **`complete`**: Requires a task ID as an argument. Marks the specified task as complete and saves the updated state.
 *   **`delete`**: Requires a task ID as an argument. Removes the specified task from the list and saves the updated state.
 *   **`search`**: Requires a keyword string as an argument. Displays all tasks that contain the specified keyword.
@@ -46,6 +46,7 @@ Handles custom string formatting, type conversion, and manipulation without rely
 *   **`Join(elements []string, separator string) string`**: Concatenates a slice of strings with a specified separator.
 *   **`Split(s string, separator rune) []string`**: Slices a string into an array of strings divided by a separator rune.
 *   **`Contains(s string, substr string) bool`**: Checks if a substring exists within a given string, returning true if a match is found.
+*   **`PadRight(text string, targetLength int) string`**: Appends spaces to the right side of a string until it reaches the specified target length, ensuring proper text alignment.
 
 ---
 
