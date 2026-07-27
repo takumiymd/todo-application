@@ -22,6 +22,7 @@ func main() {
 	takumios.Print("===> Tests have done")
 }
 
+// testFormatPackage is unit tests evalutating single functions
 func testFormatPackage() {
 	takumios.Print("--- Testing takumifmt ---")
 
@@ -122,6 +123,7 @@ func testFormatPackage() {
 	)
 }
 
+// testInternalPackage is integration tests evaluating entire workflow
 func testInternalPackage() {
 	takumios.Print("")
 	takumios.Print("--- Testing internal ---")
