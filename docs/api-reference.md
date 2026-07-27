@@ -73,3 +73,10 @@ A zero dependency, custom testing harness built to verify application logic with
 ### Functions
 *   **`AssertString(testName string, expected string, actual string)`**: Compares two strings and outputs a formatted "[PASS]" or "[FAIL]" message to standard output using `takumios.Print`. On failure, it explicitly prints both the expected and actual values to assist with debugging.
 *   **`AssertInt(testName string, expected int, actual int)`**: Compares two integers and outputs a formatted "[PASS]" or "[FAIL]" message to standard output using `takumios.Print`. On failure, it converts the values to strings via `takumifmt.IntToString` before printing.
+
+## Test Harness Architecture (`cmd/tester`)
+
+The project uses a custom built, zero dependency test harness instead of a standard testing framework. The testing logic is divided into two distinct philosophies:
+
+*   **`testFormatPackage()` (Unit Tests):** Evaluates single utility functions (like `StringToInt`) in total isolation. These tests are strictly stateless.
+*   **`testInternalPackage()` (Integration Tests):** Evaluates the complete application workflow. It runs operations sequentially (`Add` → `Complete` → `Edit` → `Delete`) on a single list state to mimic real user behavior.
