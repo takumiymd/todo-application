@@ -124,3 +124,16 @@ func (l *List) Load(filename string) error {
 
 	return nil
 }
+
+// Edit finds a task by its ID and updates its description
+func (l *List) Edit(id int, newTask string) error {
+	ls := *l
+
+	for i := range ls {
+		if ls[i].ID == id {
+			ls[i].Task = newTask
+			return nil
+		}
+	}
+	return NewTaskError("Task not found")
+}

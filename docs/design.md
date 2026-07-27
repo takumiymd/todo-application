@@ -12,6 +12,7 @@ The user will interact with the application by passing arguments to the compiled
 - `todo list` — Displays all active and completed tasks.
 - `todo complete 1` — Marks the task with ID 1 as completed.
 - `todo delete 1` — Removes the task with ID 1 from the list.
+- todo edit 1 "Buy organic groceries" — Updates the task with ID 1 to the new string.
 
 ## 3. Data Schema
 
