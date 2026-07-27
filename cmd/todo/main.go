@@ -149,6 +149,24 @@ func main() {
 	case "help":
 		showHelp()
 
+	case "edit":
+		if len(args) < 4 {
+			takumios.Print("Error: Task id and new task description required")
+			return
+		}
+
+		id := takumifmt.StringToInt(args[2])
+		newTask := args[3]
+
+		err := myTodos.Edit(id, newTask)
+		if err != nil {
+			takumios.Print("Error: " + err.Error())
+			return
+		}
+
+		myTodos.Save(dbFile)
+		takumios.Print("Task " + args[2] + " updated to: " + newTask)
+
 	default:
 		takumios.Print("Invalid command: " + command)
 		takumios.Print("")
@@ -168,4 +186,5 @@ func showHelp() {
 	takumios.Print("  " + takumifmt.PadRight("delete", 12) + "Delete a task by id")
 	takumios.Print("  " + takumifmt.PadRight("search", 12) + "Search for tasks by keyword")
 	takumios.Print("  " + takumifmt.PadRight("help", 12) + "Show this help menu")
+	takumios.Print("  " + takumifmt.PadRight("edit", 12) + "Edit an existing task by id")
 }

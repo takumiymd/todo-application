@@ -11,6 +11,7 @@ The application is interacted with via the command line and supports the followi
 *   **`delete`**: Requires a task ID as an argument. Removes the specified task from the list and saves the updated state.
 *   **`search`**: Requires a keyword string as an argument. Displays all tasks that contain the specified keyword.
 *   **`help`**: Displays the application's command line usage guide and available commands.
+*   **edit**: Requires a task ID and a new task string as arguments. Updates the specified task's description and saves the updated state.
 
 ### Functions
 *   **`showHelp()`**: Prints the usage guide and command list using `takumios.Print` to maintain zero dependency formatting.
@@ -34,6 +35,7 @@ Manages the core business logic, state, and data structures for the tasks.
 *   **`(*List) Delete(id int) error`**: Finds a task by its ID and removes it from the list.
 *   **`(*List) Save(filename string) error`**: Converts the list of todos into a CSV formatted string and writes it to disk.
 *   **`(*List) Load(filename string) error`**: Reads a file, parses the text line by line, and populates the list with `Todo` structs.
+*   **(*List) Edit(id int, newTask string) error**: Finds a task by its ID and updates its Task description.
 
 ---
 

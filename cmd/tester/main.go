@@ -229,6 +229,17 @@ func testInternalPackage() {
 		takumifmt.BoolToString(loadedList[1].Completed),
 	)
 
+	err = list.Edit(1, "Updated first task")
+	if err != nil {
+		takumios.Print("[FAIL] List: Editing task returned error: " + err.Error())
+	} else {
+		takumitest.AssertString(
+			"List: First task string was successfully updated",
+			"Updated first task",
+			list[0].Task,
+		)
+	}
+
 	err = list.Delete(1)
 	if err != nil {
 		takumios.Print("[FAIL] List: Deleting task returned error: " + err.Error())
