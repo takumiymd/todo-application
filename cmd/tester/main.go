@@ -257,4 +257,31 @@ func testInternalPackage() {
 			list[0].ID,
 		)
 	}
+
+	list.Add("Third task")
+	list.Sweep()
+
+	takumitest.AssertInt(
+		"List: Length is 1 after Sweep",
+		1,
+		len(list),
+	)
+
+	takumitest.AssertInt(
+		"List: Remaining task is ID 3",
+		3,
+		list[0].ID,
+	)
+
+	takumitest.AssertString(
+		"List: Remaining task description match",
+		"Third task",
+		list[0].Task,
+	)
+
+	takumitest.AssertString(
+		"List: Remaining task is pending",
+		"false",
+		takumifmt.BoolToString(list[0].Completed),
+	)
 }
