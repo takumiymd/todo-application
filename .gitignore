@@ -1,6 +1,9 @@
 # Compiled binaries
 /todo
 cmd/todo/todo
+cmd/todo/main
+cmd/tester/main
+main
 
 #just in case for Windows users 
 todo.exe

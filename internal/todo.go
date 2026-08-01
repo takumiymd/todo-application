@@ -35,9 +35,13 @@ func NewTaskError(text string) error {
 // Time complexity:O(1)
 // Space complexity:O(1)
 func (l *List) Add(task string) {
+	newID := 1
+
+	if len(*l) > 0 {
+		newID = (*l)[len(*l)-1].ID + 1
+	}
 	todo := Todo{
-		// Generate a simple ID based on the current length of the list
-		ID:        len(*l) + 1,
+		ID:        newID,
 		Task:      task,
 		Completed: false,
 	}
@@ -136,4 +140,17 @@ func (l *List) Edit(id int, newTask string) error {
 		}
 	}
 	return NewTaskError("Task not found")
+}
+
+// Sweep removes all complted tasks from the list
+func (l *List) Sweep() {
+	var activeTasks []Todo
+
+	for _, t := range *l {
+		if !t.Completed {
+			activeTasks = append(activeTasks, t)
+		}
+	}
+
+	*l = activeTasks
 }

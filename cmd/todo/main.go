@@ -167,6 +167,11 @@ func main() {
 		myTodos.Save(dbFile)
 		takumios.Print("Task " + args[2] + " updated to: " + newTask)
 
+	case "sweep":
+		myTodos.Sweep()
+		myTodos.Save(dbFile)
+		takumios.Print("Sweep completed succeessfully.")
+
 	default:
 		takumios.Print("Invalid command: " + command)
 		takumios.Print("")
@@ -187,4 +192,5 @@ func showHelp() {
 	takumios.Print("  " + takumifmt.PadRight("search", 12) + "Search for tasks by keyword")
 	takumios.Print("  " + takumifmt.PadRight("help", 12) + "Show this help menu")
 	takumios.Print("  " + takumifmt.PadRight("edit", 12) + "Edit an existing task by id")
+	takumios.Print("  " + takumifmt.PadRight("sweep", 12) + "Sweep completed tasks")
 }
